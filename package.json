@@ -1,0 +1,41 @@
+{
+    "name": "my-json-treeview-extension",
+    "displayName": "JSON Tree View",
+    "description": "An extension to view JSON data as a tree",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "activationEvents": [
+        "onCommand:extension.viewJsonAsTree",
+        "onCommand:extension.treeItemClicked",
+        "onStartupFinished"
+    ],
+    "main": "./src/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.viewJsonAsTree",
+                "title": "View JSON as Tree"
+            }
+        ],
+        "views": {
+            "explorer": [
+                {
+                    "id": "jsonTreeView",
+                    "name": "JSON Tree View"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "vscode": "^1.1.37"
+    },
+    "dependencies": {
+        "axios": "^1.7.2"
+    }
+}
