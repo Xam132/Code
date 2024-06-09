@@ -1,20 +1,24 @@
+// GetChildren and GetTreeItem are required as vscode api uses this to render the tree view
+
 const vscode = require('vscode');
 
 class JsonTreeView {
   constructor(context) {
     this._treeDataProvider = new JsonTreeDataProvider();
+    this.title = "jsonTreeView"
     this._treeView = vscode.window.createTreeView(
         'jsonTreeView', 
-        { treeDataProvider: this._treeDataProvider });
-        context.subscriptions.push(
-            vscode.commands.registerCommand('extension.treeItemClicked', (item) => {
+        { treeDataProvider: this._treeDataProvider }
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('extension.treeItemClicked', (item) => {
               
-              if (typeof item.value !== 'object'){
+            if (typeof item.value !== 'object'){
                 vscode.window.showInformationMessage(`TreeItem ${item.label} has value ${item.value}`);
-              }
+            }
 
-            })
-          );
+        })
+        );
   
     }
 
